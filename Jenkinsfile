@@ -20,6 +20,11 @@ pipeline {
                 sh 'docker rm devops-app || true'
             }
         }
+        stage('Selenium Test') { steps 
+            { 
+                sh ''' python3 selenium_test.py ''' }
+                 
+            }
 
         stage('Run New Container') {
             steps {
