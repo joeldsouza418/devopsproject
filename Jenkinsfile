@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout Code') {
             steps {
                 git branch: 'main', url: 'https://github.com/joeldsouza418/devopsproject.git'
@@ -20,11 +21,14 @@ pipeline {
                 sh 'docker rm devops-app || true'
             }
         }
-        stage('Selenium Test') { steps 
-            { 
-                sh ''' python3 selenium_test.py ''' }
-                 
+
+        stage('Selenium Test') {
+            steps {
+                sh '''
+                    python3 selenium_test.py
+                '''
             }
+        }
 
         stage('Run New Container') {
             steps {
